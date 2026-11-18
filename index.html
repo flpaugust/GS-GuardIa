@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GuardIão — Monitoramento Preventivo de Quedas (CitizenTech)</title>
+  <meta name="description" content="GuardIão: detecção de quedas e monitoramento preventivo de idosos com Visão Computacional, IA, Cloud e Análise de Dados, com privacidade por design (LGPD)." />
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand__logo" aria-hidden="true">🛡️</span>
+      <div>
+        <h1>GuardIão</h1>
+        <p class="brand__tagline">Monitoramento preventivo de quedas para idosos • CitizenTech</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span class="badge badge--mode" role="status" data-testid="connection-mode-badge">Modo Fallback Local</span>
+      <button type="button" class="btn btn--outline" data-testid="btn-open-config">Configurar Cloud / IA</button>
+    </div>
+  </header>
+
+  <main class="app-shell" data-testid="app-shell">
+    <!-- ============ PAINEL 1: Estação Edge (Visão Computacional + IA) ============ -->
+    <section class="panel" data-testid="panel-monitor" aria-label="Estação Edge — Monitoramento">
+      <div class="panel__header">
+        <h2>Estação Edge</h2>
+        <span class="panel__subtitle">Visão Computacional + IA local</span>
+      </div>
+
+      <div class="stage privacy-on" id="monitor-stage">
+        <video data-testid="monitor-video" class="stage__video is-hidden" playsinline muted autoplay></video>
+        <canvas data-testid="monitor-canvas" class="stage__canvas" width="640" height="480" role="img" aria-label="Esqueleto Biomecânico anônimo (33 pontos)"></canvas>
+      </div>
+
+      <div class="hud" aria-label="Telemetria biomecânica">
+        <div class="hud__item hud__item--state">
+          <span class="hud__label">Estado</span>
+          <span class="state-badge" role="status" data-testid="posture-state-badge" data-state="EM_PE">EM_PE</span>
+        </div>
+        <div class="hud__item">
+          <span class="hud__label">Ângulo do tronco (θ)</span>
+          <strong data-testid="hud-trunk-angle">88.0°</strong>
+        </div>
+        <div class="hud__item">
+          <span class="hud__label">Velocidade vertical</span>
+          <strong data-testid="hud-vertical-velocity">0.00 u/s</strong>
+        </div>
+        <div class="hud__item">
+          <span class="hud__label">Imobilidade</span>
+          <strong data-testid="hud-immobility-timer">0.0 s</strong>
+        </div>
+      </div>
+
+      <div class="controls">
+        <label class="toggle">
+          <input type="checkbox" data-testid="privacy-mode-toggle" checked />
+          <span>Modo Privacidade LGPD (só esqueleto, vídeo oculto)</span>
+        </label>
+
+        <div class="control-group">
+          <h3>Câmera ao vivo</h3>
+          <div class="btn-row">
+            <button type="button" class="btn" data-testid="btn-start-camera">Iniciar Câmera</button>
+            <button type="button" class="btn btn--ghost" data-testid="btn-stop-camera">Parar Câmera</button>
+          </div>
+          <p class="status-msg" role="status" data-testid="camera-status-msg">Câmera desligada — Simulador Biomecânico ativo.</p>
+        </div>
+
+        <div class="control-group">
+          <h3>Simulador Biomecânico</h3>
+          <div class="btn-row">
+            <button type="button" class="btn btn--success" data-testid="btn-sim-normal">Postura Normal</button>
+            <button type="button" class="btn btn--warning" data-testid="btn-sim-imbalance">Desequilíbrio</button>
+            <button type="button" class="btn btn--danger" data-testid="btn-sim-fall">Queda Crítica</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label for="sensitivity-slider"><h3>Sensibilidade (ângulo de queda)</h3></label>
+          <div class="slider-row">
+            <input id="sensitivity-slider" type="range" min="10" max="50" step="1" value="35" data-testid="sensitivity-slider" aria-label="Sensibilidade do ângulo de queda" />
+            <output data-testid="sensitivity-value" for="sensitivity-slider">35°</output>
+          </div>
+          <p class="hint" id="sensitivity-hint">Ângulo do tronco abaixo do qual a postura é considerada queda.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAINEL 2: Dashboard Preventivo (Cloud + Análise de Dados) ============ -->
+    <section class="panel" data-testid="panel-dashboard" aria-label="Dashboard Preventivo">
+      <div class="panel__header">
+        <h2>Dashboard Preventivo</h2>
+        <span class="panel__subtitle">Cloud em tempo real + Análise de Dados</span>
+      </div>
+
+      <div class="emergency-banner" role="alert" data-testid="emergency-banner" hidden>
+        <strong>🚨 EMERGÊNCIA</strong>
+        <span id="emergency-banner-text"></span>
+      </div>
+
+      <div class="kpis">
+        <article class="kpi" data-testid="kpi-sla-status" aria-label="Status / SLA de Socorro">
+          <span class="kpi__label">Status / SLA de Socorro</span>
+          <strong class="kpi__value kpi__value--text" id="kpi-sla-value">Monitoramento normal</strong>
+          <span class="kpi__hint" id="kpi-sla-hint">Nenhum socorro registrado ainda.</span>
+        </article>
+        <article class="kpi" data-testid="kpi-risk-score" aria-label="Score de Risco Preventivo">
+          <span class="kpi__label">Score de Risco Preventivo</span>
+          <strong class="kpi__value"><span id="kpi-risk-value">0</span><small>/100</small></strong>
+          <span class="kpi__hint" id="kpi-risk-hint"></span>
+        </article>
+        <article class="kpi" data-testid="kpi-weekly-imbalances" aria-label="Desequilíbrios na Semana">
+          <span class="kpi__label">Desequilíbrios na Semana</span>
+          <strong class="kpi__value" id="kpi-imbalances-value">0</strong>
+          <span class="kpi__hint">Quase-quedas nos últimos 7 dias</span>
+        </article>
+        <article class="kpi" data-testid="kpi-cloud-ops" aria-label="Operações Cloud da Sessão" data-reads="0" data-writes="0" data-total="0">
+          <span class="kpi__label">Operações Cloud da Sessão</span>
+          <strong class="kpi__value kpi__value--small" id="kpi-cloud-value">Leituras: 0 | Escritas: 0 | Total: 0</strong>
+          <span class="kpi__hint">Escrita por evento — nunca a cada frame</span>
+        </article>
+      </div>
+
+      <div class="feed">
+        <h3>Feed de Alertas em Tempo Real</h3>
+        <p class="hint" id="alert-feed-empty">Nenhum alerta registrado. Use o Simulador para demonstrar.</p>
+        <ul class="feed__list" data-testid="alert-feed-list" aria-label="Feed de Alertas"></ul>
+      </div>
+
+      <div class="charts">
+        <figure class="chart">
+          <figcaption>Evolução Semanal: Mobilidade Ativa vs. Score de Risco</figcaption>
+          <canvas data-testid="chart-weekly-mobility" width="520" height="240" style="width:100%;height:auto" aria-label="Evolução Semanal de Mobilidade e Score de Risco"></canvas>
+        </figure>
+        <figure class="chart">
+          <figcaption>Mapa Horário de Vulnerabilidade (desequilíbrios)</figcaption>
+          <canvas data-testid="chart-hourly-vulnerability" width="520" height="240" style="width:100%;height:auto" aria-label="Mapa Horário de Vulnerabilidade"></canvas>
+        </figure>
+        <p class="hint" id="chart-engine">Gráficos: Canvas nativo</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Modal de Configuração Rápida ============ -->
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="config-title" data-testid="config-modal" hidden>
+    <div class="modal__content">
+      <h2 id="config-title">Configuração Cloud / IA (gratuitas)</h2>
+      <p class="hint">As credenciais ficam somente no <code>localStorage</code> deste navegador — nunca no código-fonte.</p>
+
+      <label for="input-firebase-config">Firebase Config (JSON do Firebase Console — Plano Spark)</label>
+      <textarea id="input-firebase-config" data-testid="input-firebase-config" rows="7" spellcheck="false" aria-label="Firebase Config" placeholder='{ "apiKey": "...", "authDomain": "...", "projectId": "...", "appId": "..." }'></textarea>
+
+      <label for="input-gemini-api-key">Gemini API Key (Google AI Studio — opcional)</label>
+      <input id="input-gemini-api-key" name="geminiApiKey" type="password" autocomplete="off" data-testid="input-gemini-api-key" aria-label="Gemini API Key" placeholder="Cole sua chave gratuita do AI Studio" />
+
+      <p class="form-error" role="alert" data-testid="config-validation-error" hidden></p>
+
+      <div class="btn-row btn-row--end">
+        <button type="button" class="btn btn--ghost" data-testid="btn-clear-config">Usar Modo Local</button>
+        <button type="button" class="btn btn--ghost" data-testid="btn-close-config">Fechar</button>
+        <button type="button" class="btn" data-testid="btn-save-config">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

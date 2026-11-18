@@ -1,0 +1,18 @@
+# Credenciais e chaves locais (nunca versionar)
+src/config/firebase.config.js
+.env
+.env.local
+.env.*.local
+serviceAccountKey.json
+*.pem
+*.key
+
+# Cache e logs do Firebase CLI
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+# Dependências e arquivos de sistema
+node_modules/
+.DS_Store
+Thumbs.db

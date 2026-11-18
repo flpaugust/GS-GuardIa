@@ -1,0 +1,229 @@
+GLOBAL SOLUTION 2 – CITIZENTECH: TECNOLOGIA A SERVIÇO DO CIDADÃO
+
+Faça o upload de sua atividade na plataforma FIAP ON, na seção de atividades, e aguarde a nota e feedback do professor.
+
+ESTA ATIVIDADE NÃO TEM A OPÇÃO DE ENTREGA APÓS 3 DIAS DA DATA AGENDADA. CASO NÃO SEJA ENTREGUE NA DATA ESTIPULADA, O ALUNO DEVERÁ FAZER A PROVA SUBSTITUTIVA DESTA ATIVIDADE.
+
+Contexto
+
+A tecnologia nunca esteve tão presente em nossas vidas. A inteligência artificial, a conectividade, a automação, a análise de dados e os dispositivos inteligentes estão transformando a maneira como vivemos, trabalhamos, aprendemos e nos relacionamos. Entretanto, mesmo com os avanços tecnológicos, muitos problemas essenciais continuam fazendo parte do cotidiano: horas perdidas no trânsito, dificuldade de acesso a serviços, desperdício de água e alimentos, enchentes, falta de acessibilidade, desigualdade digital e comunidades com acesso limitado a informações e oportunidades.
+
+Nas cidades, cada rua, deslocamento, atendimento e espaço público revela oportunidades de melhoria. No campo, conectividade, condições climáticas, produção, logística e acesso a serviços influenciam diretamente a qualidade de vida e a capacidade de geração de renda. Em diferentes territórios, o desafio é semelhante: fazer com que a inovação tecnológica chegue a quem realmente precisa dela.
+
+Nesse cenário, surge o conceito de CitizenTech, que representa o desenvolvimento de tecnologias orientadas às necessidades reais das pessoas. Mais do que digitalizar processos ou criar aplicativos, CitizenTech significa combinar tecnologia, dados, conectividade, sistemas inteligentes, sensores, automação, design e novos modelos de negócio para ampliar oportunidades,
+
+facilitar escolhas, reduzir desigualdades e tornar a vida mais segura, acessível e sustentável.
+
+Uma solução CitizenTech não precisa necessariamente ser desenvolvida para o governo. Ela pode surgir como uma startup, plataforma digital, dispositivo inteligente, serviço, iniciativa de impacto social ou solução integrada entre empresas, comunidades e poder público. O que define seu propósito é o benefício concreto que proporciona ao cidadão, seja ele morador de uma grande metrópole, de uma pequena cidade, do campo ou de uma comunidade com acesso limitado à infraestrutura e aos serviços essenciais.
+
+A Global Solution – 2º Semestre convida os estudantes a se tornarem protagonistas dessa transformação. O tema central é “CitizenTech: Tecnologia a Serviço do Cidadão”, e o desafio é identificar problemas reais e desenvolver soluções tecnológicas capazes de melhorar a qualidade de vida das pessoas, considerando suas necessidades, seus contextos e os impactos gerados pela inovação.
+
+A proposta é colocar o cidadão no centro do desenvolvimento tecnológico, conectando conhecimento, criatividade, engenharia, design e visão de negócios para construir soluções aplicáveis e sustentáveis. Para isso, será fundamental compreender o problema antes de escolher a tecnologia, investigar as necessidades do público-alvo, analisar dados, desenvolver protótipos e demonstrar como a solução poderá produzir resultados concretos.
+
+A inovação deve ir além da complexidade técnica. Uma solução verdadeiramente relevante precisa ser útil, acessível, segura, inclusiva e adequada à realidade de quem irá utilizá-la. Isso significa considerar diferentes condições sociais, limitações de infraestrutura, acessibilidade, privacidade, proteção de dados e viabilidade de implementação.
+
+Além disso, os projetos deverão considerar sua contribuição para os Objetivos de Desenvolvimento Sustentável (ODS) da Organização das Nações Unidas, identificando como a proposta pode colaborar para a redução das desigualdades, a melhoria dos serviços, o desenvolvimento sustentável e a construção de comunidades mais resilientes.
+
+Com criatividade, conhecimento técnico e visão empreendedora, os estudantes terão a oportunidade de transformar desafios cotidianos em soluções inovadoras, demonstrando como a tecnologia pode gerar valor para as pessoas e contribuir para uma sociedade mais justa, conectada e sustentável.
+
+Este desafio compreende as seguintes áreas:
+
+1. Cidades Inteligentes, Mobilidade e Infraestrutura
+
+· Desenvolvimento de soluções inteligentes para mobilidade urbana, transporte público, acessibilidade e otimização de deslocamentos;
+
+· Sistemas de monitoramento e análise de dados para identificação de problemas em vias públicas, iluminação, sinalização e infraestrutura urbana;
+
+· Tecnologias para prevenção de enchentes, deslizamentos, incêndios e outros eventos que coloquem a população em risco;
+
+· Plataformas de zeladoria colaborativa que permitam identificar, registrar e acompanhar problemas nos espaços públicos;
+
+· Soluções para tornar cidades e comunidades mais seguras, acessíveis, eficientes e sustentáveis.
+
+2. Saúde, Segurança e Qualidade de Vi
+
+da
+
+· Aplicações de inteligência artificial e análise de dados para prevenção de problemas de saúde e orientação da população;
+
+· Soluções de teleatendimento, monitoramento remoto e acesso a serviços de saúde para comunidades com infraestrutura limitada;
+
+· Tecnologias de apoio a idosos e pessoas com deficiência, ampliando sua autonomia, segurança e independência;
+
+· Sistemas inteligentes para identificação de situações de risco e emissão de alertas em emergências;
+
+· Plataformas e dispositivos que contribuam para a melhoria do bem-estar e da qualidade de vida dos cidadãos.
+
+3. Sustentabilidade, Recursos Naturais e Mudanças Climáticas
+
+· Sistemas inteligentes para monitoramento e redução do desperdício de água e energia em residências, empresas e comunidades;
+
+· Soluções para identificação, prevenção e redução do desperdício de alimentos;
+
+· Tecnologias para monitoramento ambiental, qualidade do ar, condições climáticas e riscos ambientais;
+
+· Aplicações de análise de dados e inteligência artificial para apoiar decisões relacionadas à sustentabilidade;
+
+· Soluções que promovam o consumo consciente, a economia circular e o uso eficiente dos recursos naturais.
+
+4. Agricultura Inteligente e Desenvolvimento Rural
+
+· Sistemas de monitoramento de solo, irrigação, condições climáticas, saúde animal e produtividade agrícola;
+
+· Plataformas de apoio à tomada de decisão para pequenos produtores rurais, utilizando dados sobre clima, manejo, preços e mercado;
+
+· Soluções de conectividade e acesso digital para comunidades rurais e regiões com infraestrutura limitada;
+
+· Tecnologias para aproximar produtores, cooperativas, comerciantes, escolas e consumidores, reduzindo perdas logísticas;
+
+· Ferramentas que contribuam para aumentar a eficiência produtiva, a geração de renda e a sustentabilidade no campo.
+
+5. Inclusão Digital, Acessibilidade e Redução das Desigualdades
+
+· Desenvolvimento de plataformas digitais acessíveis para pessoas com deficiência, idosos e outros públicos com necessidades específicas;
+
+· Soluções para ampliar o acesso à informação, à conectividade, à educação e aos serviços essenciais;
+
+· Tecnologias que facilitem a comunicação e o acesso a oportunidades para comunidades periféricas, rurais ou isoladas;
+
+· Ferramentas digitais para capacitação, inclusão produtiva e aproximação entre cidadãos e oportunidades de trabalho;
+
+· Sistemas que utilizem dados e inteligência artificial de maneira responsável para identificar barreiras de acesso e reduzir desigualdades.
+
+6. Serviços Públicos, Participação Cidadã e Acesso à Informação
+
+· Assistentes digitais que simplifiquem o acesso a documentos, direitos, benefícios e serviços públicos;
+
+· Plataformas para comunicação entre cidadãos, comunidades, empresas e instituições responsáveis por serviços essenciais;
+
+· Soluções de participação cidadã para consultas, propostas, decisões comunitárias e acompanhamento de resultados;
+
+· Sistemas de análise de dados para identificar demandas prioritárias da população e apoiar a tomada de decisão;
+
+· Ferramentas para tornar serviços mais eficientes, transparentes, acessíveis e centrados nas necessidades dos cidadãos.
+
+7. Inteligência Artificial, Visão Computacional e Análise de Dados
+
+· Desenvolvimento de sistemas de inteligência artificial para identificar padrões, antecipar problemas e apoiar decisões que beneficiem a população;
+
+· Aplicações de visão computacional para reconhecimento de situações de risco, análise de ambientes, acessibilidade e monitoramento de condições relevantes;
+
+· Soluções de análise de dados para compreender problemas locais, identificar tendências e avaliar resultados;
+
+· Sistemas inteligentes que integrem dados de diferentes fontes para gerar informações úteis aos cidadãos e às organizações;
+
+· Aplicações que combinem inteligência artificial, análise de dados e visão computacional de maneira ética, transparente e responsável.
+
+8. Internet das Coisas, Sensores e Automação
+
+· Desenvolvimento de dispositivos conectados para monitoramento de ambientes, infraestrutura, recursos naturais e condições de segurança;
+
+· Soluções com sensores e automação para reduzir desperdícios, identificar anomalias e melhorar serviços;
+
+· Sistemas de alertas inteligentes para situações de emergência, riscos ambientais e problemas de infraestrutura;
+
+· Aplicações que integrem dispositivos físicos, plataformas digitais e serviços em nuvem para responder a necessidades reais;
+
+· Tecnologias de baixo custo que possam ser utilizadas em residências, pequenos negócios, áreas rurais e comunidades com infraestrutura limitada.
+
+9. Empreendedorismo, Novos Modelos de Negócio e Inovação de Impacto
+
+· Criação de startups e modelos de negócio que transformem problemas locais em soluções sustentáveis e escaláveis;
+
+· Plataformas digitais que conectem cidadãos, produtores, pequenos empreendedores, cooperativas e prestadores de serviços;
+
+· Soluções que ampliem o acesso a mercados, oportunidades de renda e serviços essenciais;
+
+· Desenvolvimento de produtos e serviços que conciliem viabilidade econômica, responsabilidade social e sustentabilidade;
+
+· Modelos de negócio que permitam implementar, manter e ampliar soluções tecnológicas de impacto positivo.
+
+10. Design, Experiência do Usuário e Segurança Digital
+
+· Desenvolvimento de interfaces intuitivas e acessíveis, considerando diferentes perfis de usuários e níveis de familiaridade com a tecnologia;
+
+· Soluções que simplifiquem tarefas cotidianas e facilitem o acesso a informações e serviços;
+
+· Aplicação de princípios de design centrado no ser humano para compreender necessidades, testar hipóteses e aprimorar soluções;
+
+· Sistemas que garantam privacidade, proteção de dados e segurança das informações dos cidadãos;
+
+· Ferramentas e estratégias para reduzir riscos digitais, prevenir fraudes e promover o uso responsável da tecnologia.
+
+Por que esse desafio importa?
+
+Porque a tecnologia só cumpre seu verdadeiro potencial quando gera benefícios concretos para as pessoas. Em um mundo cada vez mais conectado, ainda existem problemas que afetam diretamente a qualidade de vida, limitam oportunidades e ampliam desigualdades.
+
+O conceito de CitizenTech propõe uma mudança de perspectiva: em vez de começar pela tecnologia disponível, é necessário começar pelas necessidades reais dos cidadãos. Isso exige observar o ambiente, compreender os desafios, ouvir as pessoas afetadas, investigar dados e desenvolver soluções que façam sentido para a realidade em que serão utilizadas.
+
+A inteligência artificial, a visão computacional, a análise de dados, a computação em nuvem e os dispositivos conectados podem contribuir para antecipar riscos, melhorar serviços, otimizar recursos e ampliar o acesso a oportunidades. Entretanto, esses recursos devem ser utilizados com responsabilidade, respeitando a privacidade, a diversidade, a acessibilidade e as condições de cada comunidade.
+
+O desafio também está alinhado aos Objetivos de Desenvolvimento Sustentável da ONU, especialmente:
+
+ODS 2: Fome Zero e Agricultura Sustentável.
+
+ODS 3: Saúde e Bem-Estar.
+
+ODS 4: Educação de Qualidade.
+
+ODS 9: Indústria, Inovação e Infraestrutura.
+
+ODS 10: Redução das Desigualdades
+
+ODS 11: Cidades e Comunidades Sustentáveis.
+
+ODS 13: Ação Contra a Mudança Global do Clima.
+
+Cada equipe deverá identificar os ODS relacionados ao projeto e explicar como a solução contribui para seus objetivos e metas.
+
+Com determinação, criatividade e colaboração, os estudantes poderão transformar necessidades cotidianas em propostas tecnológicas relevantes, demonstrando que a inovação pode gerar valor econômico, social e ambiental.
+
+A tecnologia é o meio. O cidadão é o centro. O impacto positivo é o objetivo.
+
+Entregável Obrigatório:
+
+Vídeo-Pitch Técnico (20 Pontos)
+
+Duração: até 5 minutos.
+
+Objetivo: apresentar uma solução tecnológica factível e tangível que responda a um problema real enfrentado por cidadãos, comunidades ou territórios urbanos e rurais, demonstrando sua relevância, viabilidade e potencial de impacto positivo.
+
+A proposta deverá evidenciar a compreensão do problema, o público beneficiado, o funcionamento da solução, seus diferenciais e os resultados esperados. A solução deverá envolver obrigatoriamente os seguintes tópicos:
+
+Visão Computacional;
+
+Análise de Dados;
+
+Cloud (Computação em Nuvem);
+
+Inteligência Artificial.
+
+As tecnologias deverão estar relacionadas ao funcionamento da solução e à resolução do problema proposto, demonstrando sua aplicação prática e não apenas sua presença conceitual.
+
+O projeto também deverá identificar os ODS da ONU relacionados à proposta e explicar sua contribuição para as metas selecionadas.
+
+Estrutura do Vídeo
+
+1. Proposta do Projeto e Problema Evidenciado (3 pontos)
+
+Apresentar um problema real e específico, demonstrando quem é afetado, em qual contexto ele ocorre e por que precisa ser resolvido. Explicar como o problema se relaciona ao tema CitizenTech e quais evidências sustentam sua relevância.
+
+2. Público-Alvo e Mercado (3 pontos)
+
+Definir claramente os cidadãos, comunidades ou segmentos beneficiados pela solução. Apresentar o contexto de utilização, o potencial de mercado ou de adoção e os principais envolvidos em sua implementação.
+
+3. Impacto e Valor da Solução (3 pontos)
+
+Explicar como a solução funcionará e de que maneira poderá melhorar a vida do público-alvo. Destacar os benefícios esperados, considerando aspectos como acessibilidade, inclusão, segurança, eficiência, sustentabilidade ou redução de desigualdades.
+
+4. Diferencial (3 pontos)
+
+Apresentar os diferenciais da proposta em relação às alternativas existentes. Demonstrar como as tecnologias empregadas contribuem para resolver o problema e explicar os aspectos que tornam a solução relevante, viável e adequada ao contexto identificado.
+
+5. Resultados e Impacto Esperados (8 pontos)
+
+Demonstrar os resultados esperados e o impacto positivo que a solução pretende gerar. Apresentar indicadores que permitam avaliar seus benefícios, explicar como a proposta poderá ser validada e implementada e indicar possibilidades de expansão e sustentabilidade.
+
+Entrega do Vídeo
+
+O vídeo-pitch técnico deverá ser publicado no YouTube, no modo não listado. O link deverá ser disponibilizado na plataforma de entrega em um arquivo .zip ou .txt.

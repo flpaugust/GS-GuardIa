@@ -1,0 +1,25 @@
+{
+  "name": "guardiao-fall-monitoring",
+  "version": "1.0.0",
+  "description": "GuardIão — Sistema CitizenTech de Monitoramento Preventivo e Detecção de Quedas para Idosos via Webcam",
+  "type": "module",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/biomechanics.test.js tests/infrastructure.test.js",
+    "test:e2e": "node tests/e2e/run-e2e.mjs --all"
+  },
+  "keywords": [
+    "citizentech",
+    "fall-detection",
+    "biomechanics",
+    "mediapipe",
+    "firebase",
+    "gemini",
+    "privacy-by-design"
+  ],
+  "private": true
+}
