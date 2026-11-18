@@ -107,6 +107,13 @@ code { background: #1e293b; padding: 1px 6px; border-radius: 6px; }
   object-fit: cover;
   transform: scaleX(-1);
 }
+/* Keep hidden webcam <video> in layout so Chromium continues decoding frames for MediaPipe */
+.stage__video.is-hidden {
+  display: block !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
 .stage__canvas { position: relative; display: block; width: 100%; height: auto; }
 
 /* ---------- HUD ---------- */
