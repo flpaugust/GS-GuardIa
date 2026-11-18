@@ -38,7 +38,7 @@ const RENDER_CONFIG = Object.freeze({
   MIN_VISIBILITY: 0.5,
   HUD_X: 12,
   HUD_Y: 12,
-  HUD_W: 250,
+  HUD_W: 320,
   HUD_H: 54,
   FONT: '600 14px system-ui, sans-serif',
   FONT_SMALL: '12px system-ui, sans-serif',

@@ -192,7 +192,11 @@ export class MonitorController {
         .catch((error) => this._logger?.error?.('[MonitorController] Falha ao registrar alerta:', error));
     }
 
-    this._renderer.render(poseFrame.landmarks, { state: result.state, sourceLabel: this._sourceLabel });
+    const activeLabel = this._cameraActive
+      ? (result.valid ? 'Webcam: Corpo detectado' : 'Webcam: Aguardando pessoa no quadro')
+      : this._sourceLabel;
+
+    this._renderer.render(poseFrame.landmarks, { state: result.state, sourceLabel: activeLabel });
     this._updateHud(result);
     this._onFrame(result);
   }

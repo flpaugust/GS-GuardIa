@@ -91,6 +91,163 @@ const SCENARIO_TRAJECTORY_CONFIG = Object.freeze({
 
 const ZERO = 0;
 const ONE = 1;
+const EPOCH_TIMESTAMP_THRESHOLD_MS = 1e11;
+const WEBCAM_FULL_BODY_HIP_MIN_VIS = 0.65;
+const WEBCAM_FULL_BODY_HIP_MAX_Y = 0.88;
+const WEBCAM_UPPER_BODY_MIN_VIS = 0.25;
+const WEBCAM_RENDER_BOOST_VIS = 0.82;
+const WEBCAM_SYNTHETIC_HIP_VIS = 0.92;
+const WEBCAM_DEADZONE_TILT_DEG = 10;
+const WEBCAM_MAX_LOWER_Y = 0.96;
+
+function isValidFiniteLandmark(lm) {
+  return Boolean(lm && Number.isFinite(lm.x) && Number.isFinite(lm.y));
+}
+
+function mirrorLandmarksIfNeeded(rawLandmarks, shouldMirror) {
+  return rawLandmarks.map((lm) => {
+    if (!isValidFiniteLandmark(lm)) {
+      return lm;
+    }
+    return {
+      x: shouldMirror ? ONE - lm.x : lm.x,
+      y: lm.y,
+      z: Number.isFinite(lm.z) ? lm.z : ZERO,
+      visibility: Number.isFinite(lm.visibility) ? lm.visibility : ZERO,
+    };
+  });
+}
+
+function estimateSeatedHipOffset(ls, rs, nose) {
+  const sdx = ls.x - rs.x;
+  const sdy = ls.y - rs.y;
+  const shoulderWidth = Math.max(0.12, Math.hypot(sdx, sdy));
+  const torsoLen = Math.min(0.45, Math.max(0.22, shoulderWidth * 1.35));
+
+  // Perpendicular to shoulder line pointing downward in image space (y+ is down)
+  let perpX = -sdy / shoulderWidth;
+  let perpY = sdx / shoulderWidth;
+  if (perpY < ZERO) {
+    perpX = -perpX;
+    perpY = -perpY;
+  }
+
+  let axisX = perpX;
+  let axisY = perpY;
+
+  if (isValidFiniteLandmark(nose) && (nose.visibility ?? ZERO) >= WEBCAM_UPPER_BODY_MIN_VIS) {
+    const smX = (ls.x + rs.x) * 0.5;
+    const smY = (ls.y + rs.y) * 0.5;
+    const headDx = nose.x - smX;
+    const headDy = smY - nose.y;
+    const headLen = Math.hypot(headDx, headDy);
+    if (headLen > 0.03) {
+      // Opposite of nose->shoulder gives shoulder->hip downward vector
+      const hAxisX = -headDx / headLen;
+      const hAxisY = headDy / headLen;
+      axisX = Math.abs(hAxisX) > Math.abs(perpX) ? hAxisX : perpX;
+      axisY = Math.min(perpY, Math.max(0.05, hAxisY));
+    }
+  }
+
+  const tiltFromVerticalDeg = Math.atan2(Math.abs(axisX), Math.max(0.01, axisY)) * BIOMECHANICS_THRESHOLDS.RAD_TO_DEG;
+  if (tiltFromVerticalDeg < WEBCAM_DEADZONE_TILT_DEG) {
+    axisX = ZERO;
+    axisY = ONE;
+  }
+
+  const norm = Math.hypot(axisX, axisY) || ONE;
+  return {
+    dx: (axisX / norm) * torsoLen,
+    dy: (axisY / norm) * torsoLen,
+    shoulderWidth,
+  };
+}
+
+/**
+ * Adapts live webcam landmarks for both full-body (standing) and upper-body (seated at desk).
+ * Preserves real 33 landmarks whenever hips are clearly visible inside the frame; otherwise
+ * projects coherent hip/leg geometry from real shoulders and head tilt.
+ * @param {Array<object>} rawLandmarks
+ * @param {boolean} isDomVideo
+ * @returns {Array<object>}
+ */
+export function adaptWebcamLandmarks(rawLandmarks, isDomVideo = false) {
+  if (!Array.isArray(rawLandmarks) || rawLandmarks.length === ZERO) {
+    return [];
+  }
+
+  const mirrored = mirrorLandmarksIfNeeded(rawLandmarks, isDomVideo);
+  if (!isDomVideo || mirrored.length <= LANDMARK_INDEX.RIGHT_HIP) {
+    return mirrored;
+  }
+
+  const ls = mirrored[LANDMARK_INDEX.LEFT_SHOULDER];
+  const rs = mirrored[LANDMARK_INDEX.RIGHT_SHOULDER];
+  const lh = mirrored[LANDMARK_INDEX.LEFT_HIP];
+  const rh = mirrored[LANDMARK_INDEX.RIGHT_HIP];
+
+  const hasFullBodyHips =
+    isValidFiniteLandmark(ls) &&
+    isValidFiniteLandmark(rs) &&
+    isValidFiniteLandmark(lh) &&
+    isValidFiniteLandmark(rh) &&
+    (ls.visibility ?? ZERO) >= BIOMECHANICS_THRESHOLDS.MIN_LANDMARK_VISIBILITY &&
+    (rs.visibility ?? ZERO) >= BIOMECHANICS_THRESHOLDS.MIN_LANDMARK_VISIBILITY &&
+    (lh.visibility ?? ZERO) >= WEBCAM_FULL_BODY_HIP_MIN_VIS &&
+    (rh.visibility ?? ZERO) >= WEBCAM_FULL_BODY_HIP_MIN_VIS &&
+    lh.y <= WEBCAM_FULL_BODY_HIP_MAX_Y &&
+    rh.y <= WEBCAM_FULL_BODY_HIP_MAX_Y;
+
+  if (hasFullBodyHips) {
+    return mirrored;
+  }
+
+  const hasSeatedUpperBody =
+    isValidFiniteLandmark(ls) &&
+    isValidFiniteLandmark(rs) &&
+    (ls.visibility ?? ZERO) >= WEBCAM_UPPER_BODY_MIN_VIS &&
+    (rs.visibility ?? ZERO) >= WEBCAM_UPPER_BODY_MIN_VIS;
+
+  if (!hasSeatedUpperBody) {
+    return mirrored;
+  }
+
+  const out = mirrored.map((lm, idx) => {
+    if (idx <= 22 && isValidFiniteLandmark(lm) && (lm.visibility ?? ZERO) >= WEBCAM_UPPER_BODY_MIN_VIS) {
+      return { ...lm, visibility: Math.max(lm.visibility, WEBCAM_RENDER_BOOST_VIS) };
+    }
+    return lm;
+  });
+
+  const nose = out[LANDMARK_INDEX.NOSE];
+  const { dx, dy, shoulderWidth } = estimateSeatedHipOffset(ls, rs, nose);
+  const shoulderMidX = (ls.x + rs.x) * 0.5;
+  const shoulderMidY = (ls.y + rs.y) * 0.5;
+  const hipMidX = shoulderMidX + dx;
+  const hipMidY = shoulderMidY + dy;
+  const hipHalf = shoulderWidth * 0.36;
+
+  out[LANDMARK_INDEX.LEFT_HIP] = createLandmark(hipMidX + hipHalf, hipMidY, ZERO, WEBCAM_SYNTHETIC_HIP_VIS);
+  out[LANDMARK_INDEX.RIGHT_HIP] = createLandmark(hipMidX - hipHalf, hipMidY, ZERO, WEBCAM_SYNTHETIC_HIP_VIS);
+
+  const kneeY = Math.min(WEBCAM_MAX_LOWER_Y, hipMidY + 0.14);
+  const ankleY = Math.min(WEBCAM_MAX_LOWER_Y, kneeY + 0.14);
+  if ((out[LANDMARK_INDEX.LEFT_KNEE]?.visibility ?? ZERO) < WEBCAM_UPPER_BODY_MIN_VIS) {
+    out[LANDMARK_INDEX.LEFT_KNEE] = createLandmark(hipMidX + hipHalf, kneeY, ZERO, WEBCAM_UPPER_BODY_MIN_VIS);
+  }
+  if ((out[LANDMARK_INDEX.RIGHT_KNEE]?.visibility ?? ZERO) < WEBCAM_UPPER_BODY_MIN_VIS) {
+    out[LANDMARK_INDEX.RIGHT_KNEE] = createLandmark(hipMidX - hipHalf, kneeY, ZERO, WEBCAM_UPPER_BODY_MIN_VIS);
+  }
+  if ((out[LANDMARK_INDEX.LEFT_ANKLE]?.visibility ?? ZERO) < WEBCAM_UPPER_BODY_MIN_VIS) {
+    out[LANDMARK_INDEX.LEFT_ANKLE] = createLandmark(hipMidX + hipHalf, ankleY, ZERO, WEBCAM_UPPER_BODY_MIN_VIS);
+  }
+  if ((out[LANDMARK_INDEX.RIGHT_ANKLE]?.visibility ?? ZERO) < WEBCAM_UPPER_BODY_MIN_VIS) {
+    out[LANDMARK_INDEX.RIGHT_ANKLE] = createLandmark(hipMidX - hipHalf, ankleY, ZERO, WEBCAM_UPPER_BODY_MIN_VIS);
+  }
+
+  return out;
+}
 
 const LANDMARK_INDEX = Object.freeze({
   NOSE: POSE_LANDMARK_INDICES.NOSE,
@@ -470,6 +627,7 @@ export class MediaPipePoseAdapter {
 
     this._landmarker = null;
     this._lastVideoTimestampMs = -ONE;
+    this._videoEpochOffsetMs = null;
     this._initPromise = null;
     this.isReady = false;
     this.activeDelegate = null;
@@ -586,13 +744,24 @@ export class MediaPipePoseAdapter {
         : numericTs;
     this._lastVideoTimestampMs = safeTimestampMs;
 
+    let wasmTimestampMs = safeTimestampMs;
+    if (safeTimestampMs > EPOCH_TIMESTAMP_THRESHOLD_MS) {
+      if (this._videoEpochOffsetMs === null) {
+        this._videoEpochOffsetMs = safeTimestampMs;
+      }
+      wasmTimestampMs = Math.max(ONE, safeTimestampMs - this._videoEpochOffsetMs + ONE);
+    }
+
+    const isDomVideo = typeof videoElement.play === 'function';
+
     try {
-      const result = this._landmarker.detectForVideo(videoElement, safeTimestampMs);
+      const result = this._landmarker.detectForVideo(videoElement, wasmTimestampMs);
       const rawLandmarks = Array.isArray(result?.landmarks?.[ZERO])
         ? result.landmarks[ZERO]
         : [];
+      const adaptedLandmarks = adaptWebcamLandmarks(rawLandmarks, isDomVideo);
       return new PoseFrame({
-        landmarks: rawLandmarks,
+        landmarks: adaptedLandmarks,
         timestampMs: safeTimestampMs,
       });
     } catch (error) {
@@ -642,5 +811,6 @@ export class MediaPipePoseAdapter {
     this.isReady = false;
     this.activeDelegate = null;
     this._lastVideoTimestampMs = -ONE;
+    this._videoEpochOffsetMs = null;
   }
 }
